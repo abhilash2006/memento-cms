@@ -1,0 +1,178 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="siteadmin.master.cs" Inherits="Admin_siteadmin" %>
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head id="Head1" runat="server">
+    <meta charset="utf-8">
+    <title>sysTEKNIK CMS|.:: KOINONIA SHARJAH ::. 2.0</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <!-- Styles -->
+    <link href="./css/bootstrap.css" rel="stylesheet">
+    <link href="./css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="./css/bootstrap-overrides.css" rel="stylesheet">
+
+    <link href="./css/ui-lightness/jquery-ui-1.8.21.custom.css" rel="stylesheet">
+
+    <link href="./css/slate.css" rel="stylesheet">
+    <link href="./css/slate-responsive.css" rel="stylesheet">
+    <link href="./js/plugins/msgAlert/css/msgAlert.css" rel="stylesheet" />
+
+    <!-- Javascript -->
+    <script src="./js/jquery-1.7.2.min.js"></script>
+    <script src="./js/jquery-ui-1.8.21.custom.min.js"></script>
+    <script src="./js/jquery.ui.touch-punch.min.js"></script>
+    <script src="./js/bootstrap.js"></script>
+
+    <script src="./js/plugins/msgAlert/js/msgAlert.js"></script>
+    <script src="/js/plugins/validate/jquery.validate.js"></script>
+    <script src="/js/Slate.js"></script>
+
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+
+        <div id="header">
+
+            <div class="container">
+
+                <h1><a href="./">Career Fair Registration</a></h1>
+
+                <div id="info">
+
+                    <a href="javascript:;" id="info-trigger">
+                        <i class="icon-cog"></i>
+                    </a>
+
+                    <div id="info-menu">
+
+                        <div class="info-details">
+
+                            <h4>Welcome 
+                                <asp:Label ID="lblUserName" runat="server" Text="Label"></asp:Label></h4>
+
+                            <p>
+                                Logged in as Admin
+						<br>
+                                <a href="signout.aspx">Sign Out</a>
+                            </p>
+
+                        </div>
+                        <!-- /.info-details -->
+
+                        <div class="info-avatar">
+
+                            <img src="./img/avatar.jpg" alt="avatar">
+                        </div>
+                        <!-- /.info-avatar -->
+
+                    </div>
+                    <!-- /#info-menu -->
+
+                </div>
+                <!-- /#info -->
+
+            </div>
+            <!-- /.container -->
+
+        </div>
+        <!-- /#header -->
+
+
+        <div id="nav">
+
+            <div class="container">
+
+                <a href="AdminCompanyList.aspx" class="btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <i class="icon-reorder"></i>
+                </a>
+
+                <div class="nav-collapse">
+ 
+
+                    <asp:Repeater ID="rptMainMenu" runat="server" OnItemDataBound="rptMainMenu_ItemDataBound"
+                        DataSourceID="dsrcSelectAccessibleMenus">
+                        <HeaderTemplate>
+                            <ul class="nav">
+                                <li class="nav-icon active">
+                                    <a href="AdminCompanyList.aspx">
+                                        <i class="icon-home"></i>
+                                        <span>Home</span>
+                                    </a>
+                                </li>
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                            <li class="dropdown">
+
+                                <a href="<%# Eval("PageName") %>" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-th"></i>
+                                    <asp:Label ID="Label2" runat="server" Text='<%# Eval("MenuName") %>'></asp:Label>
+                               <b class="caret"></b>
+                                     </a>
+                                <asp:Repeater ID="rptSubMenu" runat="server">
+                                    <HeaderTemplate>
+                                    
+                                            <ul class="dropdown-menu">
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <li><a href="<%# Eval("PageName") %>">
+                                            <asp:Label ID="CountID" runat="server" Text='<%# Eval("MenuName") %>'></asp:Label></a></li>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                        </ul> 
+                                    </FooterTemplate>
+                                </asp:Repeater>
+                            </li>
+                        </ItemTemplate>
+                        <FooterTemplate>
+                            </ul>
+                        </FooterTemplate>
+                    </asp:Repeater>
+                    <asp:SqlDataSource ID="dsrcSelectAccessibleMenus" runat="server" ConnectionString="<%$ ConnectionStrings:SYSTEKNIKCMSConnectionString %>"
+                        SelectCommand="SelectAccessibleMenusMenuApp" SelectCommandType="StoredProcedure">
+                        <SelectParameters>
+                            <asp:Parameter Name="UserID" Type="String" />
+                             <asp:Parameter Name="MenuApp" Type="String" />
+                        </SelectParameters>
+                    </asp:SqlDataSource> 
+
+                </div>
+                <!-- /.nav-collapse -->
+
+            </div>
+            <!-- /.container -->
+
+        </div>
+        <!-- /#nav -->
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+
+
+        <div id="footer">
+
+            <div class="container">
+                &copy; 2013 sysTEKNIK CMS |.:: KOINONIA SHARJAH ::. 2.0. All rights reserved.
+		
+            </div>
+            <!-- /.container -->
+
+        </div>
+        <!-- /#footer -->
+
+
+    </form>
+</body>
+</html>
