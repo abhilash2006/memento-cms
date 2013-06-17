@@ -59,7 +59,7 @@
                                 <a href="./">Lookups</a> <span class="divider">/</span>
                             </li>
 
-                            <li class="active">Packages</li>
+                            <li class="active">Banner</li>
                         </ul>
 
                     </div>
@@ -74,7 +74,7 @@
                                 <div class="widget-header">
                                     <h3>
                                         <i class="icon-th-list"></i>
-                                        Packages						
+                                        Banner						
                                     </h3>
 
                                     <div class="widget-actions">
